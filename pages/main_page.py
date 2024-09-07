@@ -17,6 +17,8 @@ class MainPage(Base):
 
     order_button = "//div[@class='btn--md btn--mark btn--mobile actionSubmitOrder']"
 
+    empty_phone_field_allert = "(//div[@class='input-msg' and text()='Введите корректный телефон'])[2]"
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -25,6 +27,9 @@ class MainPage(Base):
 
     def get_order_button(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.order_button)))
+
+    def get_empty_phone_field_allert(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.empty_phone_field_allert)))
 
 
     def scroll_to_element(self, element):
@@ -53,3 +58,11 @@ class MainPage(Base):
         self.scroll_to_element(order_button_element)
         order_button_element.click()
         print('click order_button')
+
+
+    def get_empty_phone_field_allert_message(self):
+        empty_phone_field_allert_message_element = self.get_empty_phone_field_allert()
+        self.scroll_to_element(empty_phone_field_allert_message_element)
+        empty_phone_message = empty_phone_field_allert_message_element.text
+        print(empty_phone_message)
+        return empty_phone_message

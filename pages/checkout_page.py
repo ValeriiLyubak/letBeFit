@@ -22,6 +22,9 @@ class CheckoutPage(Base):
 
     confirm_button = "//div[@class='btn--md btn--mark btn--mobile action-send-order']"
 
+    empty_name_field = "//div[@class='input-msg' and text()='Поле обязательно к заполнению']"
+
+    empty_email_field = "//div[@class='input-msg' and text()='Введите корректный email']"
 
     def get_name_field(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.name_field)))
@@ -37,6 +40,12 @@ class CheckoutPage(Base):
 
     def get_confirm_button(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.confirm_button)))
+
+    def get_empty_name_field(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.empty_name_field)))
+
+    def get_empty_email_field(self):
+        return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.empty_email_field)))
 
     def scroll_to_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
@@ -76,3 +85,18 @@ class CheckoutPage(Base):
         self.scroll_to_element(confirm_button_element)
         confirm_button_element.click()
         print('click confirm_button')
+
+
+    def get_empty_name_field_message(self):
+        empty_name_field_message_element = self.get_empty_name_field()
+        self.scroll_to_element(empty_name_field_message_element)
+        empty_name_message = empty_name_field_message_element.text
+        print(empty_name_message)
+        return empty_name_message
+
+    def get_empty_email_field_message(self):
+        empty_email_field_message_element = self.get_empty_email_field()
+        self.scroll_to_element(empty_email_field_message_element)
+        empty_email_message = empty_email_field_message_element.text
+        print(empty_email_message)
+        return empty_email_message
