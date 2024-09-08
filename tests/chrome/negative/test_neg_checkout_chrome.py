@@ -8,7 +8,7 @@ def test_neg_checkout_chrome():
     browser = "chrome"
     driver = BrowserFactory(browser).get_driver()
 
-    print("Начинаем позитивный тест по оформлению заказа на Chrome")
+    print("Начинаем тест негативного сценария без ввода имени и email на Chrome")
 
     try:
         main_page = MainPage(driver)

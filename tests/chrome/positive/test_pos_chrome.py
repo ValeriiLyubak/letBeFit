@@ -5,7 +5,7 @@ from pages.main_page import MainPage
 from pages.order_confirm_page import OrderConfirmPage
 
 
-def test_first_pos():
+def test_pos_chrome():
     browser = "chrome"
     driver = BrowserFactory(browser).get_driver()
 
@@ -30,4 +30,4 @@ def test_first_pos():
         driver.quit()
         print("тест успешно пройден")
 
-test_first_pos()
+test_pos_chrome()
