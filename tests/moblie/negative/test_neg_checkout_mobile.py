@@ -1,18 +1,23 @@
+import time
+
 from browser_factory.browser_factory import BrowserFactory
 from pages.checkout_page import CheckoutPage
 from pages.main_page import MainPage
 
 
-def test_neg_checkout_chrome():
+def test_neg_checkout_mobile():
     browser = "chrome"
-    driver = BrowserFactory(browser).get_driver()
+    emulate_device = "iPhone X"
+    driver = BrowserFactory(browser, emulate_device=emulate_device).get_driver()
 
-    print("Начинаем тест негативного сценария без ввода имени и email на Chrome")
+    print("Начинаем тест негативного сценария без ввода имени и email на Moblie")
 
     try:
         main_page = MainPage(driver)
         main_page.landing_page()
+        time.sleep(2)
         main_page.input_phone_field("9085543490")
+        time.sleep(2)
         main_page.click_order_button()
         checkout_page = CheckoutPage(driver)
         checkout_page.click_confirm_button()

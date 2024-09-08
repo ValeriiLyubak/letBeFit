@@ -27,7 +27,6 @@ def test_pos_chrome():
         expected_message = "Спасибо за заказ"
         assert expected_message == actual_message, f"Ожидалось '{expected_message}', но получили '{actual_message}'"
     finally:
-        driver.quit()
         print("тест успешно пройден")
+        driver.quit()
 
-test_pos_chrome()

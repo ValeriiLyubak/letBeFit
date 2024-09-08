@@ -2,11 +2,12 @@ from browser_factory.browser_factory import BrowserFactory
 from pages.main_page import MainPage
 
 
-def test_neg_phone_chrome():
-    browser = "chrome"
+def test_neg_phone_edge():
+    browser = "edge"
     driver = BrowserFactory(browser).get_driver()
 
-    print("Начинаем тест негативного сценария без ввода номера телефона на Chrome")
+
+    print("Начинаем тест негативного сценария без ввода номера телефона на Edge")
 
     try:
         main_page = MainPage(driver)

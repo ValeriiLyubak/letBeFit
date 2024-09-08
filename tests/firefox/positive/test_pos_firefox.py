@@ -5,11 +5,11 @@ from pages.main_page import MainPage
 from pages.order_confirm_page import OrderConfirmPage
 
 
-def test_pos_edge():
-    browser = "edge"
+def test_pos_firefox():
+    browser = "firefox"
     driver = BrowserFactory(browser).get_driver()
 
-    print("Начинаем позитивный тест по оформлению заказа на Edge")
+    print("Начинаем позитивный тест по оформлению заказа на Firefox")
 
     try:
         main_page = MainPage(driver)

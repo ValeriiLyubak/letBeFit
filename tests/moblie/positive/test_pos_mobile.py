@@ -1,3 +1,4 @@
+import time
 
 from browser_factory.browser_factory import BrowserFactory
 from pages.checkout_page import CheckoutPage
@@ -5,16 +6,19 @@ from pages.main_page import MainPage
 from pages.order_confirm_page import OrderConfirmPage
 
 
-def test_pos_edge():
-    browser = "edge"
-    driver = BrowserFactory(browser).get_driver()
+def test_pos_mobile():
+    browser = "chrome"
+    emulate_device = "iPhone X"
+    driver = BrowserFactory(browser, emulate_device=emulate_device).get_driver()
 
-    print("Начинаем позитивный тест по оформлению заказа на Edge")
+    print("Начинаем позитивный тест по оформлению заказа на эмуляции iPhone X в Chrome")
 
     try:
         main_page = MainPage(driver)
         main_page.landing_page()
+        time.sleep(2)
         main_page.input_phone_field("9085543490")
+        time.sleep(2)
         main_page.click_order_button()
         checkout_page = CheckoutPage(driver)
         checkout_page.input_name_field("Тест")
@@ -27,6 +31,5 @@ def test_pos_edge():
         expected_message = "Спасибо за заказ"
         assert expected_message == actual_message, f"Ожидалось '{expected_message}', но получили '{actual_message}'"
     finally:
-        print("тест успешно пройден")
+        print("Тест успешно пройден")
         driver.quit()
-
